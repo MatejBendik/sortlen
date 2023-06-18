@@ -40,7 +40,7 @@ const Main = () => {
 
   return (
     <>
-      <div class="container mx-auto mb-10 md:max-w-screen-xl">
+      <div class="container mx-auto mb-32 md:max-w-screen-xl px-3">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-8">
           <div class="col-span-3 rounded-lg bg-slate-100 p-3 md:h-72">
             <label
