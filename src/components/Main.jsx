@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Main = () => {
   const [inputText, setInputText] = useState("");
   const [sortedLines, setSortedLines] = useState([]);
   const [sortingOption, setSortingOption] = useState("longest");
   const [prefixOption, setPrefixOption] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const textareaRef = useRef(null);
 
   const sortTextByLength = () => {
     const lines = inputText.split("\n");
@@ -38,36 +40,46 @@ const Main = () => {
     }
   };
 
+  const handleCopyToClipboard = () => {
+    textareaRef.current.select();
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 1000);
+  };
+
   return (
     <>
-      <div class="container mx-auto mb-32 md:max-w-screen-xl px-3">
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-8">
-          <div class="col-span-3 rounded-lg bg-slate-100 p-3 md:h-72">
+      <div className="container mx-auto mb-32 md:max-w-screen-xl px-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-8">
+          <div className="col-span-3 rounded-lg bg-slate-100 p-3 md:h-72">
             <label
-              for="message"
-              class="mb-2 block text-center text-xl font-medium text-slate-800"
+              htmlFor="message"
+              className="mb-2 block text-center text-xl font-medium text-slate-800"
             >
               Input
             </label>
             <textarea
               id="message"
               rows="10"
-              class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 outline-none resize-none"
+              className="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 outline-none resize-none"
               placeholder="Write your list here..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
             ></textarea>
           </div>
-          <div class="col-span-3 h-56 rounded-lg bg-slate-100 px-3 pt-3 md:col-span-2 md:h-72">
+          <div className="col-span-3 h-56 rounded-lg bg-slate-100 px-3 pt-3 md:col-span-2 md:h-72">
             <label
-              for="countries"
-              class="mb-2 block text-center text-xl font-medium text-slate-800"
+              htmlFor="countries"
+              className="mb-2 block text-center text-xl font-medium text-slate-800"
             >
               Options
             </label>
             <select
               id="symbols"
-              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none"
               value={prefixOption}
               onChange={(e) => setPrefixOption(e.target.value)}
             >
@@ -79,10 +91,10 @@ const Main = () => {
               <option value="arrow-left">← Arrow left</option>
             </select>
 
-            <div class="mb-4 flex items-center pt-3 md:pt-8">
+            <div className="mb-4 flex items-center pt-3 md:pt-8">
               <input
                 id="shortest-first-radio"
-                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-white outline-none"
+                className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-white outline-none"
                 type="radio"
                 value="shortest"
                 name="sort-option"
@@ -90,15 +102,15 @@ const Main = () => {
                 onChange={() => setSortingOption("shortest")}
               />
               <label
-                for="shortest-first-radio"
-                class="ml-2 text-sm font-medium text-slate-800"
+                htmlFor="shortest-first-radio"
+                className="ml-2 text-sm font-medium text-slate-800"
               >
                 Shortest first
               </label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input
-                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-white outline-none"
+                className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-white outline-none"
                 id="longest-first-radio"
                 type="radio"
                 value="longest"
@@ -107,41 +119,60 @@ const Main = () => {
                 onChange={() => setSortingOption("longest")}
               />
               <label
-                for="longest-first-radio"
-                class="ml-2 text-sm font-medium text-slate-800"
+                htmlFor="longest-first-radio"
+                className="ml-2 text-sm font-medium text-slate-800"
               >
                 Longest first
               </label>
             </div>
 
-            <div class="mx-auto flex justify-center py-3 md:pt-8">
+            <div className="mx-auto flex justify-center py-3 md:pt-8">
               <button
                 type="button"
-                class="text-md mb-2 mr-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 px-5 py-2 text-center font-medium text-white transition hover:bg-gradient-to-bl"
+                className="text-md mb-2 mr-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 px-5 py-2 text-center font-medium text-white transition hover:bg-gradient-to-bl"
                 onClick={sortTextByLength}
               >
                 Sort
               </button>
             </div>
           </div>
-          <div class="col-span-3 rounded-lg bg-slate-100 p-3 md:h-72">
+          <div className="col-span-3 rounded-lg bg-slate-100 p-3 md:h-72">
             <label
-              for="message"
-              class="mb-2 block text-center text-xl font-medium text-slate-800"
+              htmlFor="message"
+              className="mb-2 block text-center text-xl font-medium text-slate-800"
             >
               Output
             </label>
-            <textarea
-              id="message"
-              rows="10"
-              class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 outline-none resize-none"
-              value={sortedLines
-                .map((line, index) => {
-                  const prefix = getPrefixSymbol(index);
-                  return `${prefix} ${line}`;
-                })
-                .join("\n")}
-            ></textarea>
+            <div className="relative">
+              <textarea
+                id="message"
+                rows="10"
+                className="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 outline-none resize-none"
+                value={sortedLines
+                  .map((line, index) => {
+                    const prefix = getPrefixSymbol(index);
+                    return `${prefix} ${line}`;
+                  })
+                  .join("\n")}
+                readOnly
+                ref={textareaRef}
+              ></textarea>
+              <a
+                className="absolute top-2 right-2 px-1 py-1.5 cursor-pointer"
+                onClick={handleCopyToClipboard}
+              >
+                <img
+                  src="/copy_to_clipboard.svg"
+                  alt="Copy"
+                  className="w-4 h-4"
+                />
+              </a>
+              {showPopup && (
+                <div className="absolute top-0 right-0 mt-2 mr-2 p-2 bg-green-500 text-white rounded-lg text-xs">
+                  Copied to clipboard!
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

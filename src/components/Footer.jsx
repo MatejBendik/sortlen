@@ -1,12 +1,12 @@
 const Footer = () => {
   return (
-    <footer class="fixed bottom-0 bg-slate-100 w-full">
-      <div class="mx-auto max-w-screen-xl p-4 text-center">
-        <span class="text-sm text-gray-900">
+    <footer className="fixed bottom-0 bg-slate-100 w-full">
+      <div className="mx-auto max-w-screen-xl p-4 text-center">
+        <span className="text-sm text-gray-900">
           Made with ❤️ by{" "}
           <a
             href="https://twitter.com/BendikMatej"
-            class="text-blue-500 hover:text-blue-600"
+            className="text-blue-500 hover:text-blue-600"
             target="_blank"
           >
             Matej Bendík
