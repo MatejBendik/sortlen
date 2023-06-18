@@ -134,7 +134,7 @@ const Main = () => {
             <textarea
               id="message"
               rows="10"
-              class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 outline-none"
+              class="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 outline-none resize-none"
               value={sortedLines
                 .map((line, index) => {
                   const prefix = getPrefixSymbol(index);

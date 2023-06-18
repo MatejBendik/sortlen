@@ -8,6 +8,15 @@ const Header = () => {
               Sortlen
             </span>
           </div>
+          <div class="flex items-center">
+            <a href="https://github.com/MatejBendik/sortlen" target="_blank">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png"
+                class="h-8 xl:px-3"
+                alt="Flowbite Logo"
+              />
+            </a>
+          </div>
         </div>
       </nav>
     </header>
