@@ -6,7 +6,7 @@ const Footer = () => {
           Made with ❤️ by{" "}
           <a
             href="https://twitter.com/BendikMatej"
-            className="text-blue-500 hover:text-blue-600"
+            className="text-blue-800 hover:text-blue-900"
             target="_blank"
           >
             Matej Bendík

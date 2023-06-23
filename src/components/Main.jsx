@@ -62,7 +62,7 @@ const Main = () => {
               Input
             </label>
             <textarea
-              id="message"
+              id="input"
               rows="10"
               className="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 outline-none resize-none"
               placeholder="Write your list here..."
@@ -145,7 +145,7 @@ const Main = () => {
             </label>
             <div className="relative">
               <textarea
-                id="message"
+                id="output"
                 rows="10"
                 className="block w-full rounded-lg border border-gray-300 p-2.5 text-sm text-gray-900 outline-none resize-none"
                 value={sortedLines
@@ -158,6 +158,7 @@ const Main = () => {
                 ref={textareaRef}
               ></textarea>
               <a
+                href="#"
                 className="absolute top-2 right-2 px-1 py-1.5 cursor-pointer"
                 onClick={handleCopyToClipboard}
               >
