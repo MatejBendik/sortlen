@@ -56,7 +56,7 @@ const Main = () => {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-8">
           <div className="col-span-3 rounded-lg bg-slate-100 p-3 md:h-72">
             <label
-              htmlFor="message"
+              htmlFor="input"
               className="mb-2 block text-center text-xl font-medium text-slate-800"
             >
               Input
@@ -72,7 +72,7 @@ const Main = () => {
           </div>
           <div className="col-span-3 h-56 rounded-lg bg-slate-100 px-3 pt-3 md:col-span-2 md:h-72">
             <label
-              htmlFor="countries"
+              htmlFor="symbols"
               className="mb-2 block text-center text-xl font-medium text-slate-800"
             >
               Options
@@ -138,7 +138,7 @@ const Main = () => {
           </div>
           <div className="col-span-3 rounded-lg bg-slate-100 p-3 md:h-72">
             <label
-              htmlFor="message"
+              htmlFor="output"
               className="mb-2 block text-center text-xl font-medium text-slate-800"
             >
               Output
